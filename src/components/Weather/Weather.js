@@ -6,15 +6,25 @@ import "./Weather.scss";
 export default function Weather() {
   // State
   const [loaded, setLoaded] = useState(false);
-  const [temperature, setTemperature] = useState(null);
+  const [weatherData, setWeatherData] = useState({});
 
   // Callback : response from API
   function handleResponse(response) {
-    // Display only when get response
-    setLoaded(true);
+    // console.log(response.data);
 
     // Update UI
-    setTemperature(response.data.main.temp);
+    setWeatherData({
+      city: response.data.name,
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      temperature: response.data.main.temp,
+      description: response.data.weather[0].description,
+      update: "Monday 09:00",
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+    });
+
+    // Display only when get response
+    setLoaded(true);
   }
 
   // Conditional rendering
@@ -45,23 +55,26 @@ export default function Weather() {
         <div className="row weather-section">
           <div className="overview">
             <div className="col weather-main">
-              <h1 className="location">Paris</h1>
+              <h1 className="location">{weatherData.city}</h1>
               <img
-                src="http://openweathermap.org/img/wn/01d@2x.png"
-                alt="Clear sky"
+                src={weatherData.icon}
+                alt={weatherData.description}
                 className="image"
               />
             </div>
             <div className="col weather-details">
               <p className="temperature">
-                {Math.round(temperature)}
+                {Math.round(weatherData.temperature)}
                 <sup>
                   <span className="unit">°C</span>
                 </sup>
               </p>
-              <p className="description">Sunny</p>
+              <p className="description text-capitalize">
+                {weatherData.description}
+              </p>
               <p className="update">
-                Last update : <span className="update-value">Monday 09:00</span>
+                Last update :{" "}
+                <span className="update-value">{weatherData.update}</span>
               </p>
             </div>
           </div>
@@ -70,12 +83,14 @@ export default function Weather() {
           <div className="col conditions">
             <div className="col condition">
               <p className="humidity">
-                Humidity : <span className="humidity-value">74</span>%
+                Humidity :{" "}
+                <span className="humidity-value">{weatherData.humidity} </span>%
               </p>
             </div>
             <div className="col condition">
               <p className="wind">
-                Wind : <span className="wind-value">19 </span>km/h
+                Wind : <span className="wind-value">{weatherData.wind} </span>
+                km/h
               </p>
             </div>
           </div>
@@ -91,7 +106,7 @@ export default function Weather() {
 
     // Complete API URL
     const apiUrl = `${apiEndpoint}?q=${city}&units=${units}&appid=${apiKey}`;
-    console.log(apiUrl);
+    // console.log(apiUrl);
 
     // API call
     axios.get(apiUrl).then(handleResponse);
