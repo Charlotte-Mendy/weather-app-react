@@ -1,0 +1,15 @@
+@import "../../styles/vars";
+
+.Footer {
+  font-size: 12px;
+  text-align: center;
+
+  .github-link {
+    color: #fff;
+    transition: 0.3s all ease-in-out;
+
+    &:hover {
+      color: rgb(43, 20, 246);
+    }
+  }
+}

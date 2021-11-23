@@ -1,8 +1,31 @@
 import React from "react";
 
+import "./Weather.scss";
+
 export default function Weather() {
   return (
     <div className="Weather">
+      <div className="row form-section pt-3">
+        <form>
+          <div className="row">
+            <div className="col-8 col-md-10">
+              <input
+                className="form-control"
+                id="search"
+                type="text"
+                placeholder="Enter a city"
+                aria-label="Enter a city"
+              />
+              <p className="error-message"></p>
+            </div>
+            <div className="col-4 col-md-2">
+              <button className="btn btn-primary w-100" type="submit">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div className="row weather-section">
         <div className="overview">
           <div className="col weather-main">

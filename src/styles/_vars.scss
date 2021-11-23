@@ -1,0 +1,11 @@
+// Vars
+$fw300: 300;
+$fw500: 500;
+
+// Mixins
+@mixin flexCenter($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}

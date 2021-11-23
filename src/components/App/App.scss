@@ -1,0 +1,25 @@
+@import "../../styles/vars";
+
+//! Global styles : background, layout, font color, font size
+
+.App {
+  @include flexCenter(column);
+  background: linear-gradient(
+    360deg,
+    rgb(83, 207, 248) 0%,
+    rgb(37, 119, 250) 100%
+  );
+  color: #fff;
+  font-size: 16px;
+  min-height: 100vh;
+
+  // Glass style
+  .glass {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    box-shadow: rgba(37, 119, 250, 0.19) 5px 5px 15px 0px;
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 700px;
+  }
+}

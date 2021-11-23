@@ -1,0 +1,92 @@
+@import "../../styles/vars";
+
+.Weather {
+  .weather-section {
+    .overview {
+      @include flexCenter(column);
+      margin-bottom: 20px;
+      padding: 20px;
+      text-align: center;
+
+      .weather-main {
+        .location {
+          font-weight: $fw300;
+          font-size: 36px;
+          margin-bottom: 16px;
+        }
+
+        .image {
+          width: 80px;
+        }
+      }
+
+      .weather-details {
+        .temperature {
+          font-size: 64px;
+
+          .unit {
+            font-size: 30px;
+          }
+        }
+        .description {
+          font-size: 18px;
+        }
+
+        .update {
+          font-size: 14px;
+          color: rgb(209, 234, 243);
+        }
+      }
+    }
+  }
+
+  .conditions-section {
+    .conditions {
+      @include flexCenter(row);
+      border-top: 0.5px solid rgba(238, 238, 238, 0.3);
+      border-bottom: 0.5px solid rgba(238, 238, 238, 0.3);
+      padding: 20px;
+
+      .condition {
+        text-align: center;
+
+        .humidity,
+        .wind {
+          font-size: 12px;
+          font-weight: $fw500;
+          text-transform: uppercase;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// Media queries
+@media (min-width: 768px) {
+  .Weather {
+    .weather-section {
+      .overview {
+        @include flexCenter(row);
+        align-items: normal;
+        text-align: left;
+
+        .weather-main {
+          width: 60%;
+
+          .location {
+            font-size: 64px;
+          }
+
+          .image {
+            width: 100px;
+          }
+        }
+
+        .weather-details {
+          width: 40%;
+        }
+      }
+    }
+  }
+}

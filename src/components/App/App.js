@@ -9,7 +9,9 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <Weather />
+        <div className="glass">
+          <Weather />
+        </div>
         <Footer />
       </div>
     </div>
