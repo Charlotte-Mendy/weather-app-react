@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./Weather.scss";
 
-export default function Weather() {
+export default function Weather(props) {
   // State
   const [loaded, setLoaded] = useState(false);
   const [weatherData, setWeatherData] = useState({});
@@ -100,12 +100,11 @@ export default function Weather() {
   } else {
     // API URL parts
     const apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-    let city = "London";
     let units = "metric";
     let apiKey = "28b9d612e5561ca93f5281f8f4a821aa";
 
     // Complete API URL
-    const apiUrl = `${apiEndpoint}?q=${city}&units=${units}&appid=${apiKey}`;
+    const apiUrl = `${apiEndpoint}?q=${props.defaultCity}&units=${units}&appid=${apiKey}`;
     // console.log(apiUrl);
 
     // API call
