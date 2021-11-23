@@ -4,6 +4,24 @@ import axios from "axios";
 import "./Weather.scss";
 
 export default function Weather() {
+  // Callback : response from API
+  function handleResponse(response) {
+    console.log(response.data);
+  }
+
+  // API URL parts
+  const apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let city = "London";
+  let units = "metric";
+  let apiKey = "28b9d612e5561ca93f5281f8f4a821aa";
+
+  // Complete API URL
+  const apiUrl = `${apiEndpoint}?q=${city}&units=${units}&appid=${apiKey}`;
+  console.log(apiUrl);
+
+  // API call
+  axios.get(apiUrl).then(handleResponse);
+
   return (
     <div className="Weather">
       <div className="row form-section pt-3">
