@@ -7,8 +7,10 @@ import "./App.css";
 export default function App() {
   return (
     <div className="App">
-      Weather App
-      <Footer />
+      <div className="container">
+        Weather App
+        <Footer />
+      </div>
     </div>
   );
 }
