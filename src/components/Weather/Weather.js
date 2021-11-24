@@ -8,11 +8,10 @@ import "./Weather.scss";
 export default function Weather(props) {
   // State
   const [weatherData, setWeatherData] = useState({ loaded: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   // Callback : response from API
   function handleResponse(response) {
-    console.log(response.data);
-
     // Update UI
     setWeatherData({
       loaded: true,
@@ -25,13 +24,34 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
     });
   }
+  function searchCity() {
+    // API URL parts
+    const apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+    let units = "metric";
+    let apiKey = "28b9d612e5561ca93f5281f8f4a821aa";
+
+    // Complete API URL
+    const apiUrl = `${apiEndpoint}?q=${city}&units=${units}&appid=${apiKey}`;
+
+    // API call
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    searchCity();
+  }
+
+  function updateCity(e) {
+    setCity(e.target.value);
+  }
 
   // Conditional rendering
   if (weatherData.loaded) {
     return (
       <div className="Weather">
         <div className="row form-section pt-3">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-8 col-md-10">
                 <input
@@ -40,6 +60,7 @@ export default function Weather(props) {
                   type="text"
                   placeholder="Enter a city"
                   aria-label="Enter a city"
+                  onChange={updateCity}
                 />
                 <p className="error-message"></p>
               </div>
@@ -55,18 +76,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    // API URL parts
-    const apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-    let units = "metric";
-    let apiKey = "28b9d612e5561ca93f5281f8f4a821aa";
-
-    // Complete API URL
-    const apiUrl = `${apiEndpoint}?q=${props.defaultCity}&units=${units}&appid=${apiKey}`;
-    // console.log(apiUrl);
-
-    // API call
-    axios.get(apiUrl).then(handleResponse);
-
+    searchCity();
     return "Loading...";
   }
 }
