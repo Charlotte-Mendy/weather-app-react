@@ -5,8 +5,7 @@ import "./Weather.scss";
 
 export default function Weather(props) {
   // State
-  const [loaded, setLoaded] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({ loaded: false });
 
   // Callback : response from API
   function handleResponse(response) {
@@ -14,6 +13,7 @@ export default function Weather(props) {
 
     // Update UI
     setWeatherData({
+      loaded: true,
       city: response.data.name,
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       temperature: response.data.main.temp,
@@ -22,13 +22,10 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
-
-    // Display only when get response
-    setLoaded(true);
   }
 
   // Conditional rendering
-  if (loaded) {
+  if (weatherData.loaded) {
     return (
       <div className="Weather">
         <div className="row form-section pt-3">
