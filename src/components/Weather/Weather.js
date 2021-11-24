@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import FormattedDate from "../FormattedDate/FormattedDate";
+
 import "./Weather.scss";
 
 export default function Weather(props) {
@@ -9,7 +11,7 @@ export default function Weather(props) {
 
   // Callback : response from API
   function handleResponse(response) {
-    // console.log(response.data);
+    console.log(response.data);
 
     // Update UI
     setWeatherData({
@@ -18,7 +20,7 @@ export default function Weather(props) {
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
-      update: "Monday 09:00",
+      update: new Date(response.data.dt * 1000),
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
@@ -70,8 +72,7 @@ export default function Weather(props) {
                 {weatherData.description}
               </p>
               <p className="update">
-                Last update :{" "}
-                <span className="update-value">{weatherData.update}</span>
+                Last update : <FormattedDate date={weatherData.update} />
               </p>
             </div>
           </div>
