@@ -16,6 +16,11 @@
         }
 
         .image {
+          margin-right: 0;
+        }
+
+        canvas {
+          margin-top: 20px;
           width: 80px;
         }
       }
@@ -78,8 +83,8 @@
             font-size: 64px;
           }
 
-          .image {
-            width: 100px;
+          canvas {
+            width: 80px;
           }
         }
 
