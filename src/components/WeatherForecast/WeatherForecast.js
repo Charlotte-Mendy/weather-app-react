@@ -7,8 +7,8 @@ import "./WeatherForecast.scss";
 export default function WeatherForecast() {
   return (
     <div className="WeatherForecast">
-      <div className="row forecast-section">
-        <div className="col forecast-item">
+      <div className="row forecast-section pt-3">
+        <div className="col forecast-item d-flex justify-content-evenly d-md-block justify-content-md-center ">
           <div className="day">Day</div>
           <WeatherIcon code="01d" size="32" />
           <div className="temperatures">
