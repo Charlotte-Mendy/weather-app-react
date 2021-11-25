@@ -1,0 +1,13 @@
+.WeatherForecast {
+  text-align: center;
+  .forecast-section {
+    .forecast-item {
+      .temperatures {
+        .min {
+          color: rgb(209, 234, 243);
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
