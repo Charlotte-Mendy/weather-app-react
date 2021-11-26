@@ -30,7 +30,7 @@ export default function Weather(props) {
     // API URL parts
     const apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
     let units = "metric";
-    let apiKey = "b06c0cc420cc17168769847fa3e023fd";
+    let apiKey = "c7886f27caa9e4c072b704b3e1d15720";
 
     // Complete API URL
     const apiUrl = `${apiEndpoint}?q=${city}&units=${units}&appid=${apiKey}`;
