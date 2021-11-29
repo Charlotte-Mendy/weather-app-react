@@ -29,14 +29,17 @@ export default function WeatherForecast(props) {
         <div className="row forecast-section pt-3">
           {forecastData.map(function (dailyForecast, index) {
             // Loop through forecast data to display forecast for each single day
-            return (
-              <div
-                className="col forecast-item d-flex justify-content-evenly d-md-block justify-content-md-center"
-                key={index}
-              >
-                <WeatherForecastDay data={dailyForecast} />
-              </div>
-            );
+            if (index < 5) {
+              return (
+                <div
+                  className="col forecast-item d-flex justify-content-evenly d-md-block justify-content-md-center"
+                  key={index}
+                >
+                  <WeatherForecastDay data={dailyForecast} />
+                </div>
+              );
+            }
+            return null;
           })}
         </div>
       </div>
