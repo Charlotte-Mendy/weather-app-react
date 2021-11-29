@@ -10,6 +10,7 @@ export default function Weather(props) {
   // State
   const [weatherData, setWeatherData] = useState({ loaded: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [error, setError] = useState(null);
 
   // Callback : response from API
   function handleResponse(response) {
@@ -26,6 +27,15 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
     });
   }
+
+  // Callback : in case of error
+  function handleError() {
+    // If city undefined
+    if (city.value === undefined) {
+      setError("Please enter a valid city and try again");
+    }
+  }
+
   function searchCity() {
     // API URL parts
     const apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
@@ -36,12 +46,16 @@ export default function Weather(props) {
     const apiUrl = `${apiEndpoint}?q=${city}&units=${units}&appid=${apiKey}`;
 
     // API call
-    axios.get(apiUrl).then(handleResponse);
+    axios.get(apiUrl).then(handleResponse).catch(handleError);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     searchCity();
+    // If an error occurs
+    handleError();
+    // Clear input & error message on the next submission
+    setError("");
   }
 
   function updateCity(e) {
@@ -64,7 +78,7 @@ export default function Weather(props) {
                   onChange={updateCity}
                   autoFocus="on"
                 />
-                <p className="error-message"></p>
+                <p className="error-message pt-2">{error}</p>
               </div>
               <div className="col-4 col-md-2">
                 <button className="btn btn-primary w-100" type="submit">
