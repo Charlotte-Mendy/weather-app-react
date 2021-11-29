@@ -58,11 +58,11 @@ export default function Weather(props) {
               <div className="col-8 col-md-10">
                 <input
                   className="form-control"
-                  id="search"
-                  type="text"
+                  type="search"
                   placeholder="Enter a city"
                   aria-label="Enter a city"
                   onChange={updateCity}
+                  autoFocus="on"
                 />
                 <p className="error-message"></p>
               </div>
