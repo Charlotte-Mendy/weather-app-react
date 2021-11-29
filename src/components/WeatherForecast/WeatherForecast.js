@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import WeatherForecastDay from "../WeatherForecastDay/WeatherForecastDay";
@@ -9,6 +9,11 @@ export default function WeatherForecast(props) {
   // State
   const [loaded, setLoaded] = useState(false);
   const [forecastData, setForecastData] = useState(null);
+
+  // When coordinates change, set state to false to do a new API call to re-render the forecast component accordingly
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
 
   // Callback : response from API
   function handleResponse(response) {
