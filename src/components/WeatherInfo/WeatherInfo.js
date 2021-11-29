@@ -9,7 +9,7 @@ export default function WeatherInfo(props) {
     <div className="WeatherInfo">
       <div className="row weather-section">
         <div className="overview">
-          <div className="col weather-main">
+          <div className="col col-md-8 weather-main">
             <h1 className="location">{props.data.city}</h1>
             <div className="image">
               <WeatherIcon
@@ -19,7 +19,7 @@ export default function WeatherInfo(props) {
               />
             </div>
           </div>
-          <div className="col weather-details">
+          <div className="col col-md-4 weather-details">
             <WeatherTemperature celsius={props.data.temperature} />
             <p className="description text-capitalize">
               {props.data.description}
