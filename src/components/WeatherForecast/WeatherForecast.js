@@ -22,9 +22,17 @@ export default function WeatherForecast(props) {
     return (
       <div className="WeatherForecast">
         <div className="row forecast-section pt-3">
-          <div className="col forecast-item d-flex justify-content-evenly d-md-block justify-content-md-center">
-            <WeatherForecastDay data={forecastData[0]} />
-          </div>
+          {forecastData.map(function (dailyForecast, index) {
+            // Loop through forecast data to display forecast for each single day
+            return (
+              <div
+                className="col forecast-item d-flex justify-content-evenly d-md-block justify-content-md-center"
+                key={index}
+              >
+                <WeatherForecastDay data={dailyForecast} />
+              </div>
+            );
+          })}
         </div>
       </div>
     );
